@@ -1,10 +1,3 @@
-Sure! Here’s a complete and clean **`README.md`** for your image classification Flask API project. It's structured, easy to follow, and includes everything you need — setup, usage, testing with both `pytest` and `requests`, and project organization.
-
----
-
-### 📄 `README.md`
-
-```markdown
 # 🖼️ Image Classification API (Flask + PyTorch)
 
 This project is a simple Flask-based REST API for image classification using a trained PyTorch model. You can send an image to the API and receive a predicted class label.
