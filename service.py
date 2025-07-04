@@ -2,8 +2,13 @@ from flask import Flask, request, jsonify
 from PIL import Image
 import numpy as np
 import time
-from app.classifier import predict_image
+from app.classifier import  predict_image, preprocess_image
 app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"message": "Welcome to the Image Classification API!"})
+
 
 @app.route('/classification/predict', methods=['POST'])
 def predict():
@@ -16,15 +21,16 @@ def predict():
     if image.mode != 'RGB':
         image = image.convert('RGB')
 
-    # Convert to numpy array (example preprocessing)
-    # img_array = np.array(image)
-    
-    # Placeholder for your model prediction
+    # Preprocess the image
+    image = preprocess_image(image)
+
+    #predict the class
     t = time.time()
     prediction = predict_image(image)
     t = time.time() - t
     print("prediction time: ",t)
-    return prediction
+    
+    return jsonify(prediction)
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)

@@ -4,7 +4,7 @@ import requests
 url = "http://localhost:5000/classification/predict"
 
 # Image file to upload
-image_path = "Cat_November_2010-1a.jpg"
+image_path = "Cat_sample.jpg"
 
 # Additional form data (optional)
 data = {
