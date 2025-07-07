@@ -4,9 +4,13 @@ from torchvision import models
 from PIL import Image
 import json
 
-  
-def load_model():
-    model = models.alexnet(pretrained=True)
-    model.eval()
 
-    return model
+Model = None
+
+def load_model():
+    global Model
+    if not Model:
+        Model = models.alexnet(pretrained=True)
+        Model.eval()
+
+    return Model

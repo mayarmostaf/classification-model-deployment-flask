@@ -1012,7 +1012,8 @@ model.eval()
 
 def preprocess_image(image):
     transform = transforms.Compose([
-        transforms.Resize((224, 224)),                 
+        transforms.Resize((224, 224)),  
+        transforms.CenterCrop(224),               
         transforms.ToTensor(),                        
         transforms.Normalize(                         
             mean=[0.485, 0.456, 0.406],
@@ -1024,6 +1025,7 @@ def preprocess_image(image):
     
     
 def predict_image(image):
+    model = load_model()
     with torch.no_grad():
         outputs = model(image)
         probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
